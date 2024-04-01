@@ -1,42 +1,55 @@
-import { useState } from "react"
+import React from "react"
 
-export default function BookCard(props) {
-    const [readMore, setReadMore] = useState(Array(props.books?.length).fill(false))
+const BookCard = ({ book }) => {
+  const handleAmazonLink = () => {
+    // Noen bøker i resultatene har flere id'er i id_amazon og noen av disse kan være en tom streng(?!!).
+    // Jeg har valgt å bare hente ut den første verdien i arrayet for id_amazon som ikke er en tom string.
+    // Bruker find() for å finne den første verdien i id_amazon-arrayen som ikke er en tom streng (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find)
+    const firstValidId = book.id_amazon.find((id) => id.trim() !== "")
 
-    const extraContent = (book) => {
-        return (
-            <div>
-                <p>{book.Writer === 'N/A' ? null : "Writers: "+book.Writer}</p>
-                <p>{book.Runtime === 'N/A' ? null : "Runtime: "+book.Runtime}</p>
-                <p>{book.Plot === 'N/A' ? null : "Plot: "+book.Plot}</p>
-            </div>
-        )
+    // Åpne lenken hvis en gyldig ID ble funnet
+    if (firstValidId) {
+      window.open(`https://www.amazon.com/s?k=${firstValidId}`, "_blank")
     }
+  }
 
-    const toggleReadMore = (index) => {
-        const newReadMore = [...readMore]
-        newReadMore[index] = !newReadMore[index]
-        setReadMore(newReadMore)
-    }
-
-    //const PlaceholderImg = 'https://static1.srcdn.com/wordpress/wp-content/uploads/2021/09/James-Bond-key-art.jpeg'
-
-    return (
-        <>
-        {props.books?.map((book, index) => 
-        <div className="col bookcard align-text-center" key={index}>
-        <img className="rounded-top imageSy center" src={book.Poster === 'N/A' ? PlaceholderImg : book.Poster} alt={book.type}></img>
-        <div className="text-box rounded-bottom">
-        <h2>{book.Title}</h2>    
-        <h5>{book.Year === 'N/A' ? null : "Year: "+book.Year}</h5>
-        <p>{book.Genre === 'N/A' ? null : "Genre: "+book.Genre}</p>
-        <p>{book.Author === 'N/A' ? null : "Author: "+book.Author}</p>
-        {readMore[index] && extraContent(book)}
-        <span className="btn"><button className="rounded" onClick={() => toggleReadMore(index)}>{readMore[index] ? "Read Less" : "Read More"}</button></span>
-        </div>
-        </div>
+  return (
+    <article style={{ display: "flex", alignItems: "center" }}>
+      <div style={{ flex: 1 }}>
+        <h3>{book.title}</h3>
+        <p>
+          Forfatter: {book.author_name ? book.author_name.join(", ") : "Ukjent"}
+        </p>
+        <p>
+          Første publiseringsår:{" "}
+          {book.first_publish_year ? book.first_publish_year : "Ukjent"}
+        </p>
+        <button
+          onClick={handleAmazonLink}
+          disabled={
+            !book.id_amazon || book.id_amazon.every((id) => id.trim() === "")
+          }
+        >
+          {book.id_amazon && book.id_amazon.some((id) => id.trim() !== "")
+            ? "Utfør Amazon.com-søk (ny fane)"
+            : "Ingen Amazon ID fra OpenLibrary"}
+        </button>
+      </div>
+      <div>
+        {book.cover_i ? (
+          // Vi henter ut cover-bildet til boka (dersom det finnes) ved å bruke id hentet fra response-dataen
+          // https://openlibrary.org/swagger/docs#/covers
+          <img
+            src={`https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`}
+            alt="Cover"
+            style={{ maxWidth: "100px" }}
+          />
+        ) : (
+          <span>Ingen omslag</span>
         )}
-        </>
-    )
-
+      </div>
+    </article>
+  )
 }
+
+export default BookCard
