@@ -21,6 +21,7 @@ function App() {
         redirect: "follow",
       }
 
+      if (searchTerm.length >= 3){
       // Fra eksempelet https://openlibrary.org/search?q=title%3A+%22james+bond%22&mode=everything
       const response = await fetch(
         `https://openlibrary.org/search.json?q=title%3A+%22${searchTerm}%22&mode=everything`,
@@ -36,14 +37,18 @@ function App() {
           response.statusText
         )
       }
+      }
+
     } catch (error) {
       console.error("Feil ved henting av data:", error)
     }
   }
 
   const handleSearch = () => {
+    if (searchTerm.length >= 3) {
     fetchData()
-  }
+    }
+}
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value)
@@ -53,7 +58,7 @@ function App() {
     // flytt tabellen til en egen component samt som at søkefeltet kan også bli flyttet til en egen component
     // kanskje lage tabellen til et liste element om det kan
     <div className="App">
-      <input type="text" value={searchTerm} onChange={handleInputChange} />
+      <input type="text" value={searchTerm} onChange={handleInputChange} placeholder="skriv minst tre tegn"/>
       <button onClick={handleSearch}>Søk</button>
       {/* Egen komponent for listen over bøker fra søkeresultatene */}
       <SearchResults searchResults={searchResultsState} />

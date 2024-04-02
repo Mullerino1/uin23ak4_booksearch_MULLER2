@@ -14,3 +14,5 @@ const SearchResults = ({ searchResults }) => {
 }
 
 export default SearchResults
+
+
