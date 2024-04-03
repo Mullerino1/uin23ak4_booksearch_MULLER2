@@ -1,0 +1,96 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;700&display=swap');
+
+:root {
+    --redish: #b8a3a1c9;
+    --blueish: #006DB7;
+    --yellowish: #FFD700;
+    --greenish: #00AF4D;
+    --black: #000000;
+    --blackish: #2c2b2b;
+    --white: #FFFFFF;
+
+    --font: 'Rubik', sans-serif;
+    --rootsize: 20px;
+    --maxsize: 1200px;
+}
+
+
+
+
+header{
+    background-color: var(--redish);
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    h1{
+        padding-top: 5px;
+
+    }
+}
+
+        nav{
+            text-align: center;
+            padding-bottom: 20px;
+            padding-top: 20px;
+        }
+
+            main{
+                background-color: var(--redish);
+                color: var(--greenish);
+                // text-align: left;
+               
+            
+            article{
+                background-color: var(--blackish);
+                color: var(--white);
+                padding: 10px;
+                text-align: center;
+
+                img{
+                   
+                    max-height: 100px;
+                    max-width: 80px;
+                    align-items: right;
+                    margin: 0;
+             
+            }
+            
+
+           
+            }
+           
+                   
+                    
+
+                button{
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: var(--blueish);
+                    }
+            
+              
+                
+            
+        }
+     }
+
+                
+
+                      
+
+
+                
+                    
+
+        
+    
+
+
+    

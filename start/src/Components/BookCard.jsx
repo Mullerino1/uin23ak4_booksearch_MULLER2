@@ -14,8 +14,8 @@ const BookCard = ({ book }) => {
   }
 
   return (
-    <article style={{ display: "flex", alignItems: "center" }}>
-      <div style={{ flex: 1 }}>
+    <article>
+      <div>
         <h3>{book.title}</h3>
         <p>
           Forfatter: {book.author_name ? book.author_name.join(", ") : "Ukjent"}
@@ -46,7 +46,7 @@ const BookCard = ({ book }) => {
           <img
             src={`https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`}
             alt="Cover"
-            style={{ maxWidth: "100px" }}
+            
           />
         ) : (
           <span>Ingen omslag</span>
