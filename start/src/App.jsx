@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import SearchResults from "./Components/SearchResults"
 import Layout from "./Components/Layout"
 import "./Styles/Styles.scss"

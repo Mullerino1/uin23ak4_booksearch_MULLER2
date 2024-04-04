@@ -28,7 +28,9 @@ const BookCard = ({ book }) => {
           Generell rating:{" "}
           {book.ratings_average ? book.ratings_average : "Ukjent"}
         </p>
-        <button
+       
+      </div>
+      <button
           onClick={handleAmazonLink}
           disabled={
             !book.id_amazon || book.id_amazon.every((id) => id.trim() === "")
@@ -38,20 +40,21 @@ const BookCard = ({ book }) => {
             ? "Utfør Amazon.com-søk"
             : "Ingen Amazon-ID funnet"}
         </button>
-      </div>
-      <div>
+      <div className="imageContainer">
         {book.cover_i ? (
           // jeg henter ut cover-bildet til boka (dersom det finnes) ved å bruke id hentet fra response-dataen
           // https://openlibrary.org/swagger/docs#/covers
           <img
-            src={`https://covers.openlibrary.org/b/id/${book.cover_i}-S.jpg`}
+            src={`https://covers.openlibrary.org/b/id/${book.cover_i}-L.jpg`}
             alt="Cover"
             
           />
         ) : (
           <span>Ingen omslag</span>
         )}
+       
       </div>
+     
     </article>
   )
 }

@@ -21,11 +21,15 @@
 
 header{
     background-color: var(--redish);
-    text-align: center;
+    //text-align: center;
     width: 100%;
-    height: 50px;
+    height: 100px;
     h1{
-        padding-top: 5px;
+        padding-top: 20px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 50px;
+    
 
     }
 }
@@ -37,7 +41,7 @@ header{
         }
 
             main{
-                background-color: var(--redish);
+                background-color: var(--black);
                 color: var(--greenish);
                 // text-align: left;
                
@@ -46,39 +50,54 @@ header{
                 background-color: var(--blackish);
                 color: var(--white);
                 padding: 10px;
-                text-align: center;
+                text-align: left;
+                // display: block;
+                margin: 10px;
 
-                img{
-                   
-                    max-height: 100px;
-                    max-width: 80px;
-                    align-items: right;
-                    margin: 0;
-             
-            }
+                h3{
+                    font-size: 30px;
+                    font-weight: 600;
+                }
+                p{
+                    font-weight: 400;
+                    font-size: 20px;
+                }
             
-
-           
-            }
-           
-                   
+            
+                .imageContainer {
+                    display: flex;
                     
 
-                button{
-                    color: white;
-                    padding: 10px 20px;
-                    border: none;
-                    border-radius: 5px;
-                    cursor: pointer;
-
-                    &:hover{
-                        background-color: var(--blueish);
+                    img{
+                        order: 2;
+                        max-height: 320px;
+                        max-width: 250px;
+                        margin: 0 auto;
+                        margin-bottom: 10px;
+                        
                     }
+                }
+
+               
+
+            button{
+                color: var(--blackish);
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+               
+
+                &:hover{
+                    background-color: var(--blueish);
+                }
             
+
+           
+            }
               
-                
-            
         }
+        
      }
 
                 
