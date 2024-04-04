@@ -43,10 +43,9 @@ export default function Layout ({children})  {
       <input type="text" value={searchTerm} onChange={handleInputChange} placeholder="Skriv minst tre tegn" />
         <button onClick={handleSearch}>Søk</button>
         </nav>
-        
       <main>
         <SearchResults searchResults={searchResultsState} />
-        {children}
+        {/* {children} */}
       </main>
     </>
   )

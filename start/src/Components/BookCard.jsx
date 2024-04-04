@@ -28,18 +28,8 @@ const BookCard = ({ book }) => {
           Generell rating:{" "}
           {book.ratings_average ? book.ratings_average : "Ukjent"}
         </p>
-       
       </div>
-      <button
-          onClick={handleAmazonLink}
-          disabled={
-            !book.id_amazon || book.id_amazon.every((id) => id.trim() === "")
-          }
-        >
-          {book.id_amazon && book.id_amazon.some((id) => id.trim() !== "")
-            ? "Utfør Amazon.com-søk"
-            : "Ingen Amazon-ID funnet"}
-        </button>
+
       <div className="imageContainer">
         {book.cover_i ? (
           // jeg henter ut cover-bildet til boka (dersom det finnes) ved å bruke id hentet fra response-dataen
@@ -53,10 +43,17 @@ const BookCard = ({ book }) => {
           <span>Ingen omslag</span>
         )}
        
-      </div>
-     
-    </article>
+       </div>
+       
+    {book.id_amazon && book.id_amazon.some((id) => id.trim() !== "") ? (
+      <button onClick={handleAmazonLink}>Utfør Amazon.com-søk</button>
+    ) : (
+      <span>Ingen Amazon-ID funnet</span>
+    )}
+   
+  </article>
   )
 }
 
 export default BookCard
+

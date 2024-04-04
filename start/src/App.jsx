@@ -22,11 +22,11 @@ function App() {
  
 
   return (
-     <>
+     
       <Layout>
        <SearchResults searchResults={searchResultsState} />
        </Layout>
-     </>
+     
     
   )
 }
